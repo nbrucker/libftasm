@@ -21,10 +21,26 @@ int		test_strlen(void)
 	return (0);
 }
 
+int		test_isdigit(void)
+{
+	int i;
+	int real;
+	int mine;
+
+	i = 0;
+	while (i < 128)
+	{
+		mine = ft_isdigit(i);
+		real = isdigit(i);
+		if (mine != real)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int main(void)
 {
-	if (test_strlen())
-		printf("FAIL strlen\n");
-	else
-		printf("SUCCESS strlen\n");
+	printf("%d\n", test_isdigit());
+	return 0;
 }
