@@ -5,6 +5,7 @@ SRCSDIR = srcs/
 OBJSDIR = objs/
 
 SRCS = ft_isdigit.s \
+		ft_memset.s \
 		ft_strlen.s
 
 OBJS = $(addprefix $(OBJSDIR),$(SRCS:.s=.o))
