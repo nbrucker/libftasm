@@ -2,13 +2,22 @@
 
 int		test_strlen(void)
 {
-	size_t	mine;
-	size_t	real;
+	int		i;
+	char	*tests[] = {
+		"fdnjf",
+		"",
+		"42",
+		"ksdjhfui hfsih siud f h fudffasd fuasdgoui fgadsf   dugf adushfg aduy gfafuyd gldfjgjdf ",
+		"voici un texte pour tester le bon fonctionnement de mon strlen en asm 64 bits !",
+		NULL
+	};
 
-	mine = ft_strlen("uvghbjnk");
-	real = strlen("uvghbjnk");
-	if (mine != real)
-		return (1);
+	i = 0;
+	while (tests[i]) {
+		if (ft_strlen(tests[i]) != strlen(tests[i]))
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
