@@ -19,7 +19,7 @@ $(NAME): $(OBJS)
 	ranlib $(NAME)
 
 test: $(NAME)
-	gcc main.c -L./ -lfts
+	gcc main.c  -I includes/ -L./ -lfts
 
 clean:
 	rm -rf $(OBJSDIR)

@@ -1,12 +1,21 @@
-#include <stdio.h>
+#include "libfts.h"
 
-size_t	ft_strlen(const char *s);
+int		test_strlen(void)
+{
+	size_t	mine;
+	size_t	real;
+
+	mine = ft_strlen("uvghbjnk");
+	real = strlen("uvghbjnk");
+	if (mine != real)
+		return (1);
+	return (0);
+}
 
 int main(void)
 {
-	size_t i;
-
-	i = ft_strlen("dasge wfg e");
-	printf("%zu\n", i);
-	return (0);
+	if (test_strlen())
+		printf("FAIL strlen\n");
+	else
+		printf("SUCCESS strlen\n");
 }
