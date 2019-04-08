@@ -18,7 +18,7 @@ $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
-test:
+test: $(NAME)
 	gcc main.c -L./ -lfts
 
 clean:

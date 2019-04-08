@@ -1,13 +1,12 @@
 #include <stdio.h>
 
-void ft_strlen(void);
+size_t	ft_strlen(const char *s);
 
 int main(void)
 {
-	// int i;
+	size_t i;
 
-	// i = ft_strlen();
-	// printf("%d\n", i);
-	ft_strlen();
+	i = ft_strlen("dasge wfg e");
+	printf("%zu\n", i);
 	return (0);
 }
