@@ -7,6 +7,7 @@ OBJSDIR = objs/
 SRCS = ft_isdigit.s \
 		ft_memcpy.s \
 		ft_memset.s \
+		ft_puts.s \
 		ft_strdup.s \
 		ft_strlen.s
 

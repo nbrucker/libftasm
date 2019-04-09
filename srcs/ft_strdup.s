@@ -1,6 +1,5 @@
 section .text
 	global _ft_strdup
-	global _ft_test
 	extern _malloc
 	extern _ft_strlen
 	extern _ft_memcpy
