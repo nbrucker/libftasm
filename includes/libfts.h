@@ -13,7 +13,9 @@ typedef struct	s_test
 }				s_test;
 
 int		ft_isdigit(int c);
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
+char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 
 #endif
