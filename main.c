@@ -20,15 +20,31 @@ int		test_isdigit(void)
 
 int		test_memset(void)
 {
+	int		i;
+	int		j;
 	char	*a;
-	void	*ret;
+	char	*b;
+	char	*ret;
 
-	a = strdup("aaaaaaaa");
-	printf("%p\n", a);
-	ret = ft_memset(a, 'b', 3);
-	printf("%p\n", a);
-	printf("%p\n", ret);
-	printf("%s\n", a);
+	a = (char*)malloc(sizeof(char) * 1001);
+	memset(a, 1, 1000);
+	a[1000] = 0;
+	b = strdup(a);
+
+	i = 0;
+	while (i < 1000)
+	{
+		j = -500;
+		while (j < 500)
+		{
+			ret = ft_memset(a, j, i);
+			memset(b, j, i);
+			if (ret != a || strncmp(a, b, 1001) != 0)
+				return (1);
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
 
