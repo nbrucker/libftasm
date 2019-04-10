@@ -54,6 +54,9 @@ int		test_memcpy(void)
 			return (1);
 		i++;
 	}
+	ft_memcpy(NULL, "fsfshdf", 2);
+	ft_memcpy("fsdfadf", NULL, 2);
+	ft_memcpy(NULL, NULL, 2);
 	return (0);
 }
 
@@ -84,6 +87,7 @@ int		test_memset(void)
 		}
 		i++;
 	}
+	ft_memset(NULL, 10, 10);
 	return (0);
 }
 
@@ -107,6 +111,7 @@ int		test_strdup(void)
 			return (1);
 		i++;
 	}
+	ft_strdup(NULL);
 	return (0);
 }
 
@@ -128,6 +133,7 @@ int		test_strlen(void)
 			return (1);
 		i++;
 	}
+	ft_strlen(NULL);
 	return (0);
 }
 

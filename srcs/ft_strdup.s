@@ -15,10 +15,11 @@ _ft_strdup:
 	call _malloc		; call malloc
 	mov r9, rax			; save malloc return in r9
 	dec r8				; decrement r8 for memcpy
+	mov byte[r9+r8], 0	; \0 at the end
 	mov rdi, r9			; move new addr in rdi for memcpy
 	mov rsi, rbx		; move s1 in rsi for memcpy
 	mov rdx, r8			; move len to rdx for memcpy
-	call _ft_memcpy		; call memcy
+	call _ft_memcpy		; call memcpy
 	mov rax, r9			; move r9 to rax for ret
 	leave				; clean
 	ret					; return
