@@ -1,17 +1,97 @@
 #include "libfts.h"
 
+int		test_isalnum(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_isalnum(i) != isalnum(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		test_isalpha(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_isalpha(i) != isalpha(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		test_isascii(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_isascii(i) != isascii(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int		test_isdigit(void)
 {
 	int i;
-	int real;
-	int mine;
 
-	i = 0;
-	while (i < 128)
+	i = -500;
+	while (i < 500)
 	{
-		mine = ft_isdigit(i);
-		real = isdigit(i);
-		if (mine != real)
+		if (ft_isdigit(i) != isdigit(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		test_islower(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_islower(i) != islower(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		test_isprint(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_isprint(i) != isprint(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		test_isupper(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_isupper(i) != isupper(i))
 			return (1);
 		i++;
 	}
@@ -137,15 +217,51 @@ int		test_strlen(void)
 	return (0);
 }
 
+int		test_tolower(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_tolower(i) != tolower(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		test_toupper(void)
+{
+	int i;
+
+	i = -500;
+	while (i < 500)
+	{
+		if (ft_toupper(i) != toupper(i))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int		main(void)
 {
 	int		i;
 	s_test	tests[] = {
+		{&test_isalnum, "isalnum"},
+		{&test_isalpha, "isalpha"},
+		{&test_isascii, "isascii"},
 		{&test_isdigit, "isdigit"},
+		{&test_islower, "islower"},
+		{&test_isprint, "isprint"},
+		{&test_isupper, "isupper"},
 		{&test_memcpy, "memcpy"},
 		{&test_memset, "memset"},
 		{&test_strdup, "strdup"},
 		{&test_strlen, "strlen"},
+		{&test_tolower, "tolower"},
+		{&test_toupper, "toupper"},
 		{NULL, NULL}
 	};
 
