@@ -4,7 +4,9 @@ SRCSDIR = srcs/
 
 OBJSDIR = objs/
 
-SRCS = 	ft_isalnum.s \
+SRCS = 	ft_bzero.s \
+		ft_cat.s \
+		ft_isalnum.s \
 		ft_isalpha.s \
 		ft_isascii.s \
 		ft_isdigit.s \
@@ -14,6 +16,7 @@ SRCS = 	ft_isalnum.s \
 		ft_memcpy.s \
 		ft_memset.s \
 		ft_puts.s \
+		ft_strcat.s \
 		ft_strdup.s \
 		ft_strlen.s \
 		ft_tolower.s \
@@ -39,6 +42,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf a.out
 
 re: fclean all
 
