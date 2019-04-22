@@ -332,6 +332,11 @@ int		main(void)
 		{NULL, NULL}
 	};
 
+	int fd = open("/bin/ls", O_RDONLY);
+	ft_cat(fd);
+	close(fd);
+	return (0);
+
 	i = 0;
 	while (tests[i].ptr)
 	{
