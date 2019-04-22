@@ -1,5 +1,7 @@
 NAME = libfts.a
 
+T_NAME = test_libfts
+
 SRCSDIR = srcs/
 
 OBJSDIR = objs/
@@ -35,14 +37,14 @@ $(NAME): $(OBJS)
 	ranlib $(NAME)
 
 test: $(NAME)
-	gcc main.c  -I includes/ -L./ -lfts
+	gcc -o $(T_NAME) main.c  -I includes/ -L./ -lfts
 
 clean:
 	rm -rf $(OBJSDIR)
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf a.out
+	rm -rf $(T_NAME)
 
 re: fclean all
 

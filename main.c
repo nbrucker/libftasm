@@ -1,5 +1,7 @@
 #include "libfts.h"
 
+#define RM(file) (system("rm -f " file))
+
 int		test_bzero(void)
 {
 	int i;
@@ -21,6 +23,44 @@ int		test_bzero(void)
 		i++;
 	}
 	ft_bzero(NULL, tab[i]);
+	return (0);
+}
+
+int		test_cat(void)
+{
+	char	cmd[128];
+	int		i;
+	int		fd;
+	int		mine;
+	int		stdout;
+	char	*files[] = {
+		"Makefile",
+		"/bin/ls",
+		"/dev/null",
+		"/usr/bin/python",
+		"/usr/bin/audiodevice",
+		NULL
+	};
+
+	stdout = dup(1);
+	i = 0;
+	while (files[i])
+	{
+		fd = open(files[i], O_RDONLY);
+		mine = open("mine", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		dup2(mine, 1);
+		ft_cat(fd);
+		close(fd);
+		close(mine);
+		dup2(stdout, 1);
+		bzero(cmd, 128);
+		strcat(cmd, "diff ");
+		strcat(cmd, files[i]);
+		strcat(cmd, " mine >> diff_file");
+		if (system(cmd) != 0)
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
@@ -195,9 +235,46 @@ int		test_memset(void)
 	return (0);
 }
 
+int		test_puts(void)
+{
+	char	buf[1024];
+	int		i;
+	int		mine;
+	int		stdout;
+	char	*tab[] = {
+		"hello world",
+		"",
+		"foobarbaz",
+		"qwertyuiopasdfghjklzxcvbnm",
+		"1234567890-=!@#$%^&*()_+[]\\|{};':\",./<>?",
+		"echo toto       tata    ",
+		"one last simple test...",
+		NULL
+	};
+
+	stdout = dup(1);
+	i = 0;
+	while (tab[i])
+	{
+		mine = open("mine", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		dup2(mine, 1);
+		ft_puts(tab[i]);
+		close(mine);
+		dup2(stdout, 1);
+		bzero(buf, 1024);
+		mine = open("mine", O_RDONLY);
+		read(mine, buf, 1023);
+		close(mine);
+		if (strcmp(buf, tab[i]) != '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int		test_strcat(void)
 {
-	int i;
+	int	i;
 	char *a;
 	char *b;
 	char *ret;
@@ -315,6 +392,7 @@ int		main(void)
 	int		i;
 	s_test	tests[] = {
 		{&test_bzero, "bzero"},
+		{&test_cat, "cat"},
 		{&test_isalnum, "isalnum"},
 		{&test_isalpha, "isalpha"},
 		{&test_isascii, "isascii"},
@@ -324,6 +402,7 @@ int		main(void)
 		{&test_isupper, "isupper"},
 		{&test_memcpy, "memcpy"},
 		{&test_memset, "memset"},
+		{&test_puts, "puts"},
 		{&test_strcat, "strcat"},
 		{&test_strdup, "strdup"},
 		{&test_strlen, "strlen"},
@@ -331,11 +410,6 @@ int		main(void)
 		{&test_toupper, "toupper"},
 		{NULL, NULL}
 	};
-
-	int fd = open("/bin/ls", O_RDONLY);
-	ft_cat(fd);
-	close(fd);
-	return (0);
 
 	i = 0;
 	while (tests[i].ptr)
@@ -346,5 +420,7 @@ int		main(void)
 			printf("\x1b[32mSUCCESS %s\x1b[0m\n", tests[i].name);
 		i++;
 	}
+	RM("mine");
+	RM("diff_file");
 	return (0);
 }
