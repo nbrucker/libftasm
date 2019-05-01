@@ -13,6 +13,8 @@ _ft_strdup:
 	inc r8				; increment r8 for \0
 	mov rdi, r8			; move len in rdi for malloc
 	call _malloc		; call malloc
+	test rax, rax
+	je end
 	mov r9, rax			; save malloc return in r9
 	dec r8				; decrement r8 for memcpy
 	mov byte[r9+r8], 0	; \0 at the end
@@ -21,5 +23,6 @@ _ft_strdup:
 	mov rdx, r8			; move len to rdx for memcpy
 	call _ft_memcpy		; call memcpy
 	mov rax, r9			; move r9 to rax for ret
+end:
 	leave				; clean
 	ret					; return

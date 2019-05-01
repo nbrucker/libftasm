@@ -6,22 +6,21 @@ section .text
 	global _ft_puts
 	extern _ft_strlen
 
-error:
+empty:
 	lea rsi, [rel null]
 	mov rdi, 1
 	mov rdx, 7
 	mov rax, 0x2000004
 	syscall
-	leave
-	mov rax, 10
-	ret
+	jc error
+	jmp success
 
 _ft_puts:
 	push rbp
 	mov rbp, rsp
 
 	test rdi, rdi
-	je error
+	je empty
 
 	mov rsi, rdi		; string to print
 	call _ft_strlen		; call strlen to get length
@@ -35,6 +34,15 @@ _ft_puts:
 	mov rdx, 1
 	mov rax, 0x2000004
 	syscall
+	jc error
+	jmp success
 
+error:
+	mov rax, -1
 	leave
-	ret					; return
+	ret
+
+success:
+	mov rax, 10
+	leave
+	ret

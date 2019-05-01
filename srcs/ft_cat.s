@@ -25,10 +25,12 @@ reading:
 	mov rdx, r9
 	mov rax, 0x2000004
 	syscall
+	jc end
 
 	cmp r9, 0
 	jne reading
 
+end:
 	leave
 	ret
 
