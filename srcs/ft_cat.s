@@ -13,12 +13,9 @@ reading:
 
 	mov rax, 0x2000003	; syscall read
 	syscall
+	jc end
 
 	mov r9, rax
-
-	lea r10, [rel buf]
-	add r10, r9
-	mov byte [r10], 0
 
 	lea rsi, [rel buf]
 	mov rdi, 1
@@ -28,7 +25,7 @@ reading:
 	jc end
 
 	cmp r9, 0
-	jne reading
+	jg reading
 
 end:
 	leave
